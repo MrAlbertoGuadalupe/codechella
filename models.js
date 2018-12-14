@@ -2,8 +2,7 @@ const { Sequelize } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const SALT = 10;
 
-const sequelize = new Sequelize({
-  database: 'codechella_db',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   operatorsAliases: false,
   define: {
