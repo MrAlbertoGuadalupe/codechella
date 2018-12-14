@@ -17,6 +17,7 @@ export default function VendorList(props) {
           false}
           creator={props.creator === vendor.created_by || props.creator <= 3}
           delete={props.delete}
+          update={props.update}
           />
         )
       })}
