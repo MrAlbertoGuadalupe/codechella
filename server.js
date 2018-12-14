@@ -8,7 +8,7 @@ const { artistsRouter } = require('./routes/artists.js');
 const { vendorsRouter } = require('./routes/vendors.js');
 const { usersRouter } = require('./routes/users.js');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
