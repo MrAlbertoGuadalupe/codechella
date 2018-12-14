@@ -35,7 +35,10 @@ export default class VendorView extends Component {
           onChange={this.handleModal}
           favoriteVendor={this.props.favoriteVendor}
           unfavoriteVendor={this.props.unfavoriteVendor}
-          userVendors={this.props.userVendors}/> :
+          userVendors={this.props.userVendors}
+          creator={this.props.creator}
+          delete={this.props.delete}
+          update={this.props.update}/> :
         <VendorModal
           vendor={this.state.vendor}
           reset={this.resetModal}/>}
@@ -48,6 +51,7 @@ export default class VendorView extends Component {
           userVendors={this.props.userVendors}
           creator={this.props.creator}
           delete={this.props.delete}
+          update={this.props.update}
           />
         <VendorForm
           vendors={this.props.vendors}

@@ -38,26 +38,6 @@ artistsRouter.post('/', passport.authenticate('jwt', { session: false }), async 
     }
 });
 
-artistsRouter.put('/:id', async (req, res) => {
-  try {
-    const artist = await Artist.findOne({
-      where: {
-        id: req.params.id
-      }
-    });
-    artist.update({
-      name: req.body.name,
-      description: req.body.description,
-      timeslot: req.body.timeslot
-    });
-    res.json(artist);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      messsage: e.message
-    })
-  }
-});
 
 artistsRouter.delete('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {

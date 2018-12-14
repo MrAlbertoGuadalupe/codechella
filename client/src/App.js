@@ -36,6 +36,7 @@ class App extends Component {
     this.submitArtist = this.submitArtist.bind(this);
     this.submitVendor = this.submitVendor.bind(this);
     this.updateArtist = this.updateArtist.bind(this);
+    this.updateVendor = this.updateVendor.bind(this);
     this.deleteArtist = this.deleteArtist.bind(this);
     this.deleteVendor = this.deleteVendor.bind(this);
   }
@@ -56,7 +57,7 @@ class App extends Component {
   async getArtists() {
     try {
       const artists = await serv.getArtists();
-      this.setState({artists});
+      await this.setState({artists});
     } catch (e) {
       console.error(e);
     }
@@ -65,7 +66,7 @@ class App extends Component {
   async getAreas() {
     try {
       const areas = await serv.getAreas();
-      this.setState({areas});
+      await this.setState({areas});
     } catch (e) {
       console.error(e);
     }
@@ -74,7 +75,7 @@ class App extends Component {
   async getVendors() {
     try {
       const vendors = await serv.getVendors();
-      this.setState({vendors});
+      await this.setState({vendors});
     } catch (e) {
       console.error(e);
     }
@@ -181,7 +182,21 @@ class App extends Component {
 
   async updateArtist(e) {
     if (e.key === 'Enter') {
-      console.log(e.target.value);
+      let headers = this.buildHeaders();
+      let data = e.target.value;
+      let id = e.target.name;
+      const resp = await serv.updateArtist({img_url: data},id,headers);
+      await this.getArtists();
+    }
+  }
+
+  async updateVendor(e) {
+    if (e.key === 'Enter') {
+      let headers = this.buildHeaders();
+      let data = e.target.value;
+      let id = e.target.name;
+      const resp = await serv.updateVendor({img_url: data},id,headers);
+      await this.getVendors();
     }
   }
 
@@ -225,11 +240,14 @@ class App extends Component {
        break;
       case 'vendorsView':
        content = <VendorView
+       creator={this.state.user.id}
        userVendors={this.state.user.vendors || null}
        vendors = {this.state.vendors || []}
        favoriteVendor={this.favoriteVendor}
        unfavoriteVendor={this.unfavoriteVendor}
-       submit={this.submitVendor}/>;
+       submit={this.submitVendor}
+       delete={this.deleteVendor}
+       update={this.updateVendor}/>;
        break;
       case 'areasView':
        content = <AreaView

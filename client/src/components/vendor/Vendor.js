@@ -10,6 +10,8 @@ export default function Vendor(props) {
       <span><input className="favebutton" name={props.vendor.id} type="button" value="Remove from Favorites" onClick={props.unfavoriteVendor}/></span> :
       <span><input className="favebutton" name={props.vendor.id} type="button" value="Add to Favorites" onClick={props.favoriteVendor}/></span>}
       {props.creator ?
+      <input type="text" name={props.vendor.id} placeholder="update image url" className="update-input" onKeyUp={props.update}/>: null}
+      {props.creator ?
       <button className="exit" value={props.vendor.id} onClick={props.delete}>🗑</button>: null}
     </div>
   )

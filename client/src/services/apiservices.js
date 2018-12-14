@@ -21,9 +21,14 @@ const BASE_URL = 'http://localhost:3001';
   return artist.data;
 }
 
- const updateArtist = async (data, id) => {
-  const artists = await axios.put(`${BASE_URL}/artists/${id}`, data);
-  return artists.data;
+ const updateArtist = async (data, id, headers) => {
+   const artist = await axios({
+     method: 'put',
+     url: `${BASE_URL}/artists/${id}`,
+     data: data,
+     headers: headers
+   });
+   return artist.data;
 }
 
  const postArtist = async (data, headers) => {
@@ -55,9 +60,14 @@ const BASE_URL = 'http://localhost:3001';
   return vendor.data;
 }
 
- const updateVendor = async (data, id) => {
-  const vendor = await axios.put(`${BASE_URL}/vendors/${id}`, data);
-  return vendor.data;
+ const updateVendor = async (data, id, headers) => {
+   const vendor = await axios({
+     method: 'put',
+     url: `${BASE_URL}/vendors/${id}`,
+     data: data,
+     headers: headers
+   });
+   return vendor.data;
 }
 
 const postVendor = async (data, headers) => {
@@ -69,10 +79,6 @@ const postVendor = async (data, headers) => {
    });
  return vendor.data;
 }
-//  const removeVendor = async (id) => {
-//   const vendor = await axios.delete(`${BASE_URL}/vendors/${id}`);
-//   return vendor.data;
-// }
 
 const removeVendor = async (id, headers) => {
   const vendor = await axios({

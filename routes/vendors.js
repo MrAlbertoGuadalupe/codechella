@@ -1,7 +1,8 @@
 const express = require('express');
-const vendorsRouter = express.Router();
 const { Vendor }  = require('../models');
 const { passport, sign } = require('../auth');
+
+const vendorsRouter = express.Router();
 
 vendorsRouter.get('/', async (req, res) => {
   try {
@@ -35,40 +36,7 @@ vendorsRouter.post('/', passport.authenticate('jwt', { session: false }), async 
   }
 });
 
-vendorsRouter.delete('/:id', async (req, res) => {
-  try {
-    const vendors = await Vendor.destroy({
-      where: { id: req.params.id }
-    });
-    res.json({message: `Vendor with id ${req.params.id} deleted`})
-  } catch(e) {
-    res.json({message: e.message})
-  }
-});
-
-vendorsRouter.put('/:id', async (req, res) => {
-  try {
-    const updatedVendors = await Vendor.findByPk(req.params.id)
-    await updatedVendors.update(req.body)
-    res.json(updatedVendors);
-  } catch(e) {
-    res.json({message: e.message})
-  }
-});
-
-vendorsRouter.post('/', async (req, res) => {
-  try{
-    const vendor = await Vendor.create(req.body);
-    res.json(vendor);
-  } catch(e) {
-    console.error(e);
-    res.status(500).json({
-      msg: e.message
-    })
-  }
-});
-
-vendorsRouter.put('/id:', async (req, rest) => {
+vendorsRouter.put('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const vendor = await Vendor.findOne({
       where: {
@@ -76,8 +44,6 @@ vendorsRouter.put('/id:', async (req, rest) => {
       }
     });
     vendor.update({
-      name: req.body.name,
-      description: req.body.description,
       img_url: req.body.img_url
     });
     res.json(vendor);
