@@ -37,10 +37,11 @@ Each __area__ has several __artists__, as well as several __vendors__. A given _
 - _AreaView_: class component for areas
 
 #### Login/Register
-- _Login_: Login option.
-- _Register_: Register option.
-- _RegisterDetail_: Registering Menu
-- _Profile_: User information, favorite artists and vendors with option of delete from user's profile.
+- _LoginForm_: Login option.
+- _RegisterForm_: Register option.
+_ _LoginView_: View of the above two options.
+- _ProfileView_: Conditional render view for favorites.
+- _ProfileModal_: User information, favorite artists and vendors with option of delete from user's profile.
 
 #### Footer
 
@@ -67,3 +68,69 @@ Each __area__ has several __artists__, as well as several __vendors__. A given _
   1. Map
   2. Tickets
   3. Styling
+
+#### Code Snippet
+```javascript
+ import React, { Component } from 'react';
+import ArtistList from './ArtistList';
+import ArtistModal from './ArtistModal';
+import ArtistForm from './ArtistForm';
+import './ArtistList.css';
+
+export default class ArtistView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      artist: null
+    }
+    this.handleModal = this.handleModal.bind(this);
+    this.resetModal = this.resetModal.bind(this);
+  }
+
+  handleModal(e) {
+    let { id } = e.target.parentNode;
+    const artist = this.props.artists.filter(artist => artist.name.toLowerCase() === id.toLowerCase())[0];
+    this.setState({artist});
+  }
+
+  resetModal() {
+    this.setState({artist: null});
+  }
+
+  render() {
+    return (
+      <div>
+      <h2 className="header">LINEUP</h2>
+      {!this.state.artist ?
+        <ArtistList
+          artists={this.props.artists.filter(artist => artist.created_by <= 3)}
+          onChange={this.handleModal}
+          favoriteArtist={this.props.favoriteArtist}
+          unfavoriteArtist={this.props.unfavoriteArtist}
+          userArtists={this.props.userArtists}
+          creator={this.props.creator}
+          delete={this.props.delete}
+          update={this.props.update}/> :
+        <ArtistModal
+          artist={this.state.artist}
+          reset={this.resetModal}/>}
+      <h2 className="header">WILDCARDS</h2>
+        <ArtistList
+          artists={this.props.artists.filter(artist => artist.created_by > 3)}
+          onChange={this.handleModal}
+          favoriteArtist={this.props.favoriteArtist}
+          unfavoriteArtist={this.props.unfavoriteArtist}
+          userArtists={this.props.userArtists}
+          creator={this.props.creator}
+          delete={this.props.delete}
+          update={this.props.update}/>
+          <ArtistForm
+            artists={this.props.artists}
+            submit={this.props.submit}
+            />
+      </div>
+    )
+  }
+}
+```
+The significance of this code snippet lies in the filter method and the creator prop for the ```<ArtistList />``` component. It determines whether or not a user is an admin/creator (if their id is less than 4, since we have three admin users, or if their id matches the created_by id) and it renders to the screen split between admin-created options and user-created options. The delete method also relies on this id match up.
