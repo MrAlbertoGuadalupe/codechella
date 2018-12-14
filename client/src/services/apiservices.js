@@ -1,5 +1,5 @@
 const axios = require('axios');
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://quiet-bayou-20345.herokuapp.com/';
 
  const getAreas = async () => {
   const areas = await axios.get(`${BASE_URL}/areas`);
