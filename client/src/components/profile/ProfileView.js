@@ -28,6 +28,8 @@ export default class ProfileView extends Component {
                id={this.state.selectedProfile}
                artists={this.props.user.artists}
                vendors={this.props.user.vendors}
+               userArtists={this.props.userArtists}
+               userVendors={this.props.userVendors}
                profiles = {this.props.profiles}
                favoriteArtist={this.props.favoriteArtist}
                unfavoriteArtist={this.props.unfavoriteArtist}
