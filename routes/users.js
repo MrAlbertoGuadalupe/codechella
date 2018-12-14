@@ -205,7 +205,6 @@ usersRouter.delete('/vendors/:vendor', passport.authenticate('jwt', { session: f
   }
 })
 
-
 // POST-AUTH
 // TODO: integrate front end with favorites
 // TODO: add ticket function
