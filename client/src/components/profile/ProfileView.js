@@ -23,7 +23,7 @@ export default class ProfileView extends Component {
      return (
 
       <div>
-        {this.props.user.artists && this.props.user.vendors ?
+        {this.props.user.artists.length > 0 || this.props.user.vendors.length > 0 ?
              <ProfileModal
                id={this.state.selectedProfile}
                artists={this.props.user.artists}
@@ -36,7 +36,7 @@ export default class ProfileView extends Component {
                favoriteVendor={this.props.favoriteVendor}
                unfavoriteVendor={this.props.unfavoriteVendor}
              /> :
-             <h2>Add some favorites</h2>}
+             <h2 className="header">Add some favorites!</h2>}
 
 
       </div>
