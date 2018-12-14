@@ -14,38 +14,35 @@ Each __area__ has several __artists__, as well as several __vendors__. A given _
 ### MVP
 
 #### Navigation Bar
-- contains _Home_, _Map_, _Artists_, _Vendors_, _Areas_, _Tickets_ as well as a _Login/Register_
+- contains _Home_, _Artists_, _Vendors_, _Areas_ as well as a _Login/Register_
 
 #### Artists
 - _ArtistList_: list of _Artist_ components
 - _Artist_: rendered version of _Artist_ entries
-- _ArtistDetail_: modal details about artist
+- _ArtistView_: class component for artists
 - _ArtistForm_: form for adding artists
+- _ArtistModal_: modal details about artist
 
 #### Vendors
 - _VendorList_: list of _Vendor_ components
 - _Vendor_: rendered version of _Vendor_ entries
-- _VendorDetail_: modal details about vendor
+- _VendorModal_: modal details about vendor
 - _VendorForm_: form for adding vendors
+- _VendorView_: class component for vendors
 
 #### Areas
-- _AreaNav_: nav to switch between different Areas
 - _Area_: Picture, description.
-- _Schedule_: Schedule of different artists (extends ArtistList).
+- _AreaModal_: modal details about area
+- _AreaList_: list of _Area_ components, to switch between different Areas
+- _AreaView_: class component for areas
 
 #### Login/Register
 - _Login_: Login option.
 - _Register_: Register option.
 - _RegisterDetail_: Registering Menu
-- _Profile_: User information, tickets bought.
+- _Profile_: User information, favorite artists and vendors with option of delete from user's profile.
 
-### POST-MVP
-
-#### Map
-- _Map_: Clickable picture that links to different area views.
-
-#### Tickets
-- _Tier_: Details on ticket tiers, upon clicking (if logged in) will take you to cart. Else, it will take you to register.
+#### Footer
 
 #### Timeline
 1. Monday

@@ -44,7 +44,6 @@ div .imgMain {
   opacity: 0.9;
 }
 
-
 .main > h2 {
   letter-spacing: inherit;
 }
@@ -64,9 +63,8 @@ div .imgMain {
 }
 
 .main > p {
-  width: 750px;
-  margin: 20px 350px;
-  /* float: center; */
+  margin: 0 auto;
+  width: 35vw;
   font-size: 24px;
   color: black;
   font-family: 'Lato';
