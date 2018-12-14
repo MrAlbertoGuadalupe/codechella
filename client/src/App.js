@@ -253,6 +253,9 @@ class App extends Component {
       case 'profileView':
         content = <ProfileView
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f774073c7acae597bead9e4cefdba3feeeb5e1a7
           user={this.state.user}
           artists={this.state.artists || []}
           vendors={this.state.vendors || []}
@@ -263,6 +266,7 @@ class App extends Component {
           favoriteVendor={this.favoriteVendor}
           unfavoriteVendor={this.unfavoriteVendor}
           />;
+<<<<<<< HEAD
 
 =======
         user={this.state.user}
@@ -273,6 +277,8 @@ class App extends Component {
         favoriteVendor={this.favoriteVendor}
         unfavoriteVendor={this.unfavoriteVendor}/>;
 >>>>>>> 96d860886c487dfb461dad861d8b7241b7b81e5e
+=======
+>>>>>>> f774073c7acae597bead9e4cefdba3feeeb5e1a7
         break;
       default:
        content = <MainList />;
